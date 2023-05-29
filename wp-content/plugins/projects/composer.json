@@ -1,0 +1,18 @@
+{
+    "name": "user/projects",
+    "description": "This is a plugin for the project management system using composer",
+    "type": "project",
+    "license": "GPLv2 or Later",
+    "authors": [
+        {
+            "name": "Joy Mwende, Patrick Mwaniki"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Inc\\": "./inc"
+        }
+    }
+}
