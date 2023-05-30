@@ -50,21 +50,21 @@ add_shortcode('login', function(){
 
     if (isset($_POST['loginbtn'])) {
 
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+        $user_email = $_POST['user_email'];
+        $user_pass = $_POST['user_pass'];
     
         $user = wp_signon([
-            'user_login' => $email,
-            'user_pass' => $password
+            'user_login' => $user_email,
+            'user_password' => $user_pass
         ]);
     
+        // var_dump($user);
         if (!is_wp_error($user)) {
             wp_set_current_user($user->ID);
             wp_set_auth_cookie($user->ID);
             do_action('wp_login', $user->user_login, $user);
     
-            var_dump($user);
-            // wp_redirect(home_url());
+            wp_redirect('/jpj-system/create-project');
             exit;
         }
         $error = "Invalid email or password";
@@ -80,18 +80,18 @@ add_shortcode('login', function(){
     $logincode .='<div class="d-flex flex-column justify-content-start; align-item-start gap-2">';
     $logincode .= '<label>Email: </label>';
     $logincode .='<div class="login-input" >';
-    $logincode .= '<input type="email" class="form-control" name="email" placeholder="abc@example.com" style="width: 100%; height: 45px; border: 1px solid grey; border-radius: 10px;">';
+    $logincode .= '<input type="email" class="form-control" name="user_email" placeholder="abc@example.com" style="width: 100%; height: 45px; border: 1px solid grey; border-radius: 10px;">';
     $logincode .='</div>';
     $logincode .='</div>';
     $logincode .='<div style="display:flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px">';
     $logincode .= '<label>Password: </label>';
     $logincode .='<div class="login-input" >';
-    $logincode .= '<input type="password" class="form-control" name="passsword" placeholder="Enter your password" style="width: 100%; height: 45px; border: 1px solid grey; border-radius: 10px;">';
+    $logincode .= '<input type="password" class="form-control" name="user_pass" placeholder="Enter your password" style="width: 100%; height: 45px; border: 1px solid grey; border-radius: 10px;">';
     $logincode .='</div>';
     $logincode .='</div>';
     $logincode .= '</div>';
     $logincode .= '<div>';
-    $logincode .= '<input type="submit" class="loginbtn" name="loginbtn" value="Login" style="width: 100%; height: 45px; border: hidden; border-radius: 10px; color: white; cursor: hover; background-color: #6E3EF3; margin-top: 30px;">';
+    $logincode .= '<input type="submit" name="loginbtn" value="Login" style="width: 100%; height: 45px; border: hidden; border-radius: 10px; color: white; cursor: hover; background-color: #6E3EF3; margin-top: 30px;">';
     $logincode .= '</div>';
     $logincode .= '</form>';
     $logincode .= '</div>';
