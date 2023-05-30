@@ -22,7 +22,7 @@ body{
   
 }
 .project-info{
- 
+width: 100%;
     padding-top: 10px;
 }
 .profile-pic img{
@@ -47,9 +47,7 @@ body{
 }
 .Contents{
     display: grid;
-    grid-template-columns: 15% 65% 20%;
-   
-
+    grid-template-columns: 20% 40% 20% 20%;
 }
 .Status{
     display: flex;
@@ -70,6 +68,7 @@ body{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    word-wrap: break-word;
     width: 60%;
 }
 .status-tracker>div p{
@@ -78,6 +77,49 @@ body{
 }
 .Status P{
     font-size: 14px;
+}
+/* Clicked projects page */
+.Widely-View-Projects{
+    background-color: white;
+    padding: 0 2%;
+}
+.full-project-description{
+  background-color: #6F3FF3;
+ width: 100%;
+ word-wrap: break-word;
+}
+.Content{
+    display: grid;
+    grid-template-columns: 15% 65% 20%;
+}
+.Content .buttons{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+.Content .edit button{
+    background-color: #FACBC8;
+    
+    border: none;
+}
+.Content .delete button{
+    background-color: #FDE8CB;
+    
+    border: none;
+
+
+}
+/* Contents hover */
+
+.Contents:hover{
+    transform: scale(1.1);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+    padding: 10px;
+    cursor: pointer;
+}
+.Contents .project-description:hover{
+    width: 100%;
 }
 /* nav */
 nav {
