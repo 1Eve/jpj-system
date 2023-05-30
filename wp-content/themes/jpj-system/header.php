@@ -8,16 +8,26 @@
     <title>Project Management System</title>
     <?php wp_head(); ?>
 </head>
-
+<?php
+    $avatar = get_template_directory_uri() . '/custom/memoji-modified.png';
+    $logo = get_template_directory_uri() . '/custom/memoji.png';
+?>
 <body>
-<nav class="nav">
-    <div>
-        <img src="" alt="">
-    </div>
-    <div>
-        <p>Joy</p>
-    </div>
-    <div>
-        <a href="">Login</a>
-    </div>
-</nav>
+    <nav>
+        <div class="logo">
+            <h1>JPJ PMS</h1>   
+        </div>
+        <div class="nav-tools">
+            <div class="account-details">
+                <div class="name">
+                    <p>Patrick</p>
+                </div>
+                <div class="avatar">
+                    <img src="<?php echo $avatar ?>" alt="avatar">
+                </div>
+            </div>
+            <div class="login">
+                <a href="">Login</a>
+            </div>
+        </div>
+    </nav>
