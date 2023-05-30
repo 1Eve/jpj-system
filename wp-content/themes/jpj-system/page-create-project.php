@@ -21,7 +21,9 @@ $project_info = "CREATE TABLE IF NOT EXISTS " . $table . "(
     employee_name text NOT NULL,
     project_title text NOT NULL,
     project_desc text NOT NULL,
-    due_date text NOT NULL
+    due_date text NOT NULL,
+    status text DEFAULT 'Unlaunched',
+    is_deleted int DEFAULT 0
 );";
 require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 dbDelta($project_info);
@@ -39,6 +41,11 @@ if (isset($_POST['createbtn'])) {
         'due_date' => $_POST['due_date'],
     ];
 
+    //check if user has been assigned
+    $assignedTask = $wpdb->get_row("SELECT * FROM $table WHERE employee_name = '{$_POST['employee_name']}' AND status = 'Unlaunched' AND status = 'Launched'");
+    if ($assignedTask) {
+        echo "<script>alert('Employee has been assigned another task')</script>";
+    } else {
     $newtask = $wpdb->insert($table, $project);
 
     if ($newtask == true) {
@@ -51,8 +58,10 @@ if (isset($_POST['createbtn'])) {
     } else {
         $errormessage = true;
     }
+}
 
-    wp_redirect('/jpj-system');
+    var_dump($newtask);
+    // wp_redirect('/jpj-system');
     
 }
 

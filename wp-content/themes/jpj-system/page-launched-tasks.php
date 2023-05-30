@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Name: View All Tasks
+ * Template Name: Launched Tasks Page
  */
 
 ?>
@@ -11,7 +11,7 @@ $avatar = get_template_directory_uri() . '/custom/memoji-modified.png';
 global $wpdb;
 $table = $wpdb->prefix . 'projects';
 
-$tasks = $wpdb->get_results("SELECT * FROM $table");
+$tasks = $wpdb->get_results("SELECT * FROM $table where status='Completed'");
 ?>
 <?php get_header(); ?>
 
@@ -50,7 +50,7 @@ $tasks = $wpdb->get_results("SELECT * FROM $table");
     <div class="Contents-Container">
         <div class="Contents-header">
             <div>
-                <p>All Task</p>
+                <p>Launched Tasks</p>
             </div>
             <div>
                 <i class="bi bi-laptop"></i>
@@ -58,9 +58,9 @@ $tasks = $wpdb->get_results("SELECT * FROM $table");
             </div>
         </div>
         <hr>
-        <?php if (empty($tasks)) { ?>
+        <?php if(empty($tasks)){ ?>
             <div class="bg-light h-75 d-flex justify-content-center align-items-center">
-                <h2 class="text-center">No Tasks</h2>
+                <h2 class="text-center">No Launched Tasks</h2>
             </div>
         <?php
         } else {

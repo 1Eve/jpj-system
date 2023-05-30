@@ -15,28 +15,24 @@ global $errormessage;
 $errormessage = false;
 
 $table = $wpdb->prefix . 'projects';
+$id = $_GET['id'];
+var_dump($id);
+
+
+$task = $wpdb->get_row("SELECT * FROM $table WHERE id = $id");
 
 if (isset($_POST['updatebtn'])) {
     $project = [
-        $employee_name => $_POST['empoyee_name'],
-        $project_title => $_POST['project_title'],
-        $project_desc => $_POST['project_desc'],
-        $due_date => $_POST['due_date'],
+        'employee_name' => $_POST['employee_name'],
+        'project_title' => $_POST['project_title'],
+        'project_desc' => $_POST['project_desc'],
+        'due_date' => $_POST['due_date'],
     ];
 
-    $task = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table WHERE employee_name = '$employee_name'"));
+    $id = $_GET['id'];
+    $condition = ['id' => $id];
 
-    $updatetask = $wpdb->update(
-        $table,
-        array(
-            'project_title' => $project_title,
-            'project_desc' => $project_desc,
-            'due_date' => $due_date
-        ),
-        array(
-            'employee_name' => $employee_name,
-        )
-    );
+    $updatetask = $wpdb->update($table, $project, $condition);
 
     if ($updatetask == true) {
         $successmessage = true;
@@ -48,7 +44,9 @@ if (isset($_POST['updatebtn'])) {
     } else {
         $errormessage = true;
     }
-    wp_redirect('/jpj-ststen');
+
+    var_dump($updatetask);
+    wp_redirect('/jpj-system/clicked-project?id=' . $task->id);
 }
 
 get_header();
@@ -149,23 +147,23 @@ get_header();
                 <div class="d-flex flex-column justify-content-start align-items-start gap-2">
                     <label for="project_title">Project Title</label>
                     <div class="update-input">
-                        <input class="update-input" style="width: 400px; height: 36px;" type="text" name="project_title" placeholder="Enter project title" value="<?php echo $updatetask['project_title']?>">
+                        <input class="update-input" style="width: 400px; height: 36px;" type="text" name="project_title" value="<?php echo $task->project_title; ?>">
                     </div>
                 </div>
                 <div class="d-flex flex-column justify-content-start align-items-start gap-2">
                     <label for="project_desc">Project Description</label>
                     <div class="update-input">
-                        <textarea cols="52" rows="4" type="text" name="project_desc" value="Enter project description"></textarea>
+                        <textarea cols="52" rows="4" type="text" name="project_desc" value="<?php echo $task->project_desc; ?>"><?php echo $task->project_desc; ?></textarea>
                     </div>
                 </div>
                 <div class="d-flex flex-column justify-content-start align-items-start gap-2">
                     <label for="due_date">Due date</label>
                     <div class="update-input">
-                        <input class="update-input" style="width: 400px; height: 36px;" type="date" name="due_date">
+                        <input class="update-input" style="width: 400px; height: 36px;" type="date" name="due_date" value="<?php echo $task->due_date; ?>">
                     </div>
                 </div>
                 <div class="mt-2">
-                    <button class="update-btn" style="width: 250px" type="submit" value="updatebtn">Update Project</button>
+                    <button class="update-btn" style="width: 250px" type="submit" name="updatebtn">Update Project</button>
                 </div>
             </div>
         </form>

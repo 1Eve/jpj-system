@@ -6,9 +6,34 @@
 
 ?>
 
+<?php get_header(); ?>
 <?php
 $avatar = get_template_directory_uri() . '/custom/memoji-modified.png';
+
+global $wpdb;
+
+$table = $wpdb->prefix . 'projects';
+$id = $_GET['id'];
+var_dump($id);
+
+
+$task = $wpdb->get_row("SELECT * FROM $table WHERE id = $id");
+
+
+if (isset($_POST['deletebtn'])) {
+    $id = $_POST['delete_id'];
+
+
+    $result = $wpdb->query("UPDATE $table SET is_deleted=1 WHERE id=$id");
+
+    if (!$result) {
+        $error = "Error deleting ticket";
+    }
+}
+
 ?>
+<?php get_header(); ?>
+
 
 <section class="Widely-View-Projects">
     <div>
@@ -19,18 +44,12 @@ $avatar = get_template_directory_uri() . '/custom/memoji-modified.png';
             <div class="avatar">
                 <img src="<?php echo $avatar ?>" alt="avatar">
             </div>
-            <p class="employee-name">Employee Name</p>
+            <p class="employee-name"><?php echo $task->employee_name; ?></p>
         </div>
         <div class="project-info">
-            <p class="project-title">Sample Title</p>
-            <p class="full-project-description">Lorem ipsum dolor sit amet,
-                sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-                consectetur adipiscing elite Lorem ipsum
-                dolor sit amet, consectetur adipiscing elit Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Reiciendis tempore quis ipsum! Consequatur nesciunt, iusto dolores explicabo illo doloremque
-                perspiciatis. Nobis praesentium sapiente itaque in veniam! Ad impedit sed eaque?</p>
+            <p class="project-title"><?php echo $task->project_title; ?></p>
+            <p class="full-project-description"><?php echo $task->project_desc; ?></p>
         </div>
-
         <div class="Status">
             <div class="status-tracker">
                 <div>
@@ -42,10 +61,10 @@ $avatar = get_template_directory_uri() . '/custom/memoji-modified.png';
             </div>
             <div>
                 <div>
-                    <p>April 15, 2023</p>
+                    <p><?php echo $task->due_date; ?></p>
                 </div>
                 <div class="rocket">
-                    <p>Launched</p>
+                    <p><?php echo $task->status; ?></p>
                     <i class="bi bi-rocket-fill"></i>
                 </div>
             </div>
