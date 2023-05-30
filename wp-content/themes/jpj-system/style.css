@@ -1,0 +1,17 @@
+/*
+    Theme Name: New Custom Theme
+    Theme URI: http://jpj.org
+    Author: Joy Mwende, Patrick Mwaniki
+    Version: 1.0.1
+    Author URI: http://jpj.com
+    Description: This is a theme for project management system
+    License: GNU General Public Licence
+    Licence URI: https://wordpress.org/about/license/
+    Tags: responsiveness, e-commerce, custom-menu, footer, custom-logo
+*/
+
+/* login page */
+.login-input{
+    /* display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; */
+    background-color: aqua;
+}

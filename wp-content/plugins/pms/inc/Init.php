@@ -13,8 +13,12 @@ class Init{
     */
     public static function get_services(){
         return [
+<<<<<<< Updated upstream:wp-content/plugins/pms/inc/Init.php
             Pages\Login::class,
             Base\Enqueuestyles::class
+=======
+            
+>>>>>>> Stashed changes:wp-content/plugins/projects/inc/Init.php
         ];
     }
 
