@@ -157,3 +157,75 @@ $successmessage;
 
 global $errormessage;
 $errormessage;
+
+//limit login trials
+function check_login_trials($user, $username, $password){
+    if(get_transient('tried_to_login')){
+        $trials = get_transient('tried_to_login');
+
+        if($trials['tried'] >= 3){
+            $until = get_option("_transient_timeout_" . "tried_to_login");
+            $remaining_time = time_left($until);
+
+            return new WP_Error('too_many_attempts' , sprintf(__('<strong> ALERT </strong>: You have logged in too many times, please try after %1$s'), $remaining_time));
+        }
+    }
+
+    return $user;
+}
+
+add_filter('authenticate', 'check_login_trials', 30, 3);
+
+function failure_to_login($username){
+    if (get_transient('tried_to_login')){
+        $trials = get_transient('tried_to_login');
+
+        $trials['tried']++;
+
+        if($trials['tried'] <= 3) set_transient('tried_to_login', $trials, 300);
+        } else {
+            $trials = [
+                'tried' => 1
+            ];
+            set_transient('tried_to_login', $trials, 300);
+        }
+    
+}
+add_action('wp_login_failed', 'failure_to_login', 10, 1);
+function time_left($timestamp){
+    $time = [
+        'second',
+        'minute',
+        'hour',
+        'day',
+        'week',
+        'month',
+        'year'
+    ];
+    $time_length = [
+        '60',
+        '60',
+        '24',
+        '7',
+        '4.35',
+        '12'
+    ];
+
+    $current_timestamp = time();
+    $time_left = abs($current_timestamp - $timestamp);
+
+    for ($i = 0; $time_left >= $time_length[$i] && $i < count($time_length) - 1; $i ++) {
+        $time_left /= $time_length[$i];
+    }
+    //add countdown
+    $time_left = round($time_left);
+
+    if (isset($time_left)){
+        if($time_left != 1){
+            $time[$i] .= 's';
+            $output = "$time_left $time[$i]";
+            return $output;
+        }
+    }
+    
+}
