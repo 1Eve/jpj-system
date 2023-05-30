@@ -1,174 +1,255 @@
-body{
-    background-color: #EFEEF3;
+body {
+  background-color: #efeef3;
 }
+
 /* Dashboard */
-.Dashboard{
-    background-color: white;
-    display: flex;
-    gap: 10px;
-    padding: 0 2%;
+.Dashboard {
+  background-color: white;
+  display: grid;
+  grid-template-columns: 18% 80%;
+  padding: 0 2%;
 }
+
 /* Sidebar */
-.sidebar{
+.sidebar {
 }
-.sidebar>div{
-    display: flex;
-    gap: 10px;
-    padding-bottom: 30px;
+
+.sidebar > div {
+  display: flex;
+  gap: 10px;
+  padding-bottom: 30px;
 }
 
 /* Contents */
-.profile-pic{
+.project-info {
+  width: 100%;
+}
+
+.profile-pic img {
+  background-color: #f4ce9b;
+  border-radius: 50%;
+  padding: 3px;
+}
+
+.Contents-Container {
+  border: 1px solid #eeeeee;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.Contents-header {
+  display: grid;
+  grid-template-columns: 80% 20%;
+}
+
+.Contents-header div:nth-child(2) {
+  display: flex;
+  gap: 15px;
+}
+
+.Contents {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.Contents .buttons {
+    
+    display: none;
+    gap: 10px;
+  }
+  
+  .Contents .edit button {
+    background-color: #f6e3c8;
+    border-radius: 5px;
+    width: 100px;
+    height: 40px;
+    border: none;
+  }
+  
+  .Contents .delete button {
+    background-color: #fccdcb;
+    border: none;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+  }
+  .Contents .delete button i, .Contents .edit button i{
+      padding-right: 5px;
+  } 
+.Status {
+  display: flex;
+}
+
+.Status div:first-child {
+  margin-right: 10px;
   
 }
-.project-info{
-width: 100%;
-    padding-top: 10px;
+
+.rocket {
+  display: flex;
+  justify-content: space-between;
 }
-.profile-pic img{
-    background-color: #F4CE9B;
-    border-radius: 50%;
-    padding: 3px;
+
+.employee-name,
+.project-title {
+  font-weight: 600;
+  font-size: 20px;
+  color: #191919;
 }
-.Contents-Container{
-    border: 1px solid #EEEEEE;
-    padding: 15px ;
-    border-radius: 10px;
+
+.project-description {
+    color: #8E9090;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  width: 90%;
 }
-.Contents-header{
-    display: grid;
-    grid-template-columns: 80% 20%;
-    padding-bottom: 10px;
-    
+
+.status-tracker > div p {
+  font-weight: 600;
 }
-.Contents-header div:nth-child(2){
-    display: flex;
-    gap: 10px;
+
+.due-date p,.rocket p{
+    color: #8E9090;
+
 }
-.Contents{
-    display: grid;
-    grid-template-columns: 20% 40% 20% 20%;
+/* .dark{
+    color: #8E9090;
+} */
+
+.Status P {
+  font-size: 14px;
 }
-.Status{
-    display: flex;
- 
-}
-.Status div:first-child{
-    margin-right: 10px;
-}
-.rocket{
-    display: flex;
-    justify-content: space-between;
-}
-.employee-name, .project-title{
-    font-weight: 600;
-    font-size: 20px;
-}
-.project-description{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-wrap: break-word;
-    width: 60%;
-}
-.status-tracker>div p{
-    font-weight: 600;
-    
-}
-.Status P{
-    font-size: 14px;
-}
+
 /* Clicked projects page */
-.Widely-View-Projects{
-    background-color: white;
-    padding: 0 2%;
+.Widely-View-Projects {
+  padding: 0 2%;
+  background-color: white;
+  height: 100vh;
 }
-.full-project-description{
-  background-color: #6F3FF3;
- width: 100%;
- word-wrap: break-word;
-}
-.Content{
-    display: grid;
-    grid-template-columns: 15% 65% 20%;
-}
-.Content .buttons{
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-}
-.Content .edit button{
-    background-color: #FACBC8;
-    
-    border: none;
-}
-.Content .delete button{
-    background-color: #FDE8CB;
-    
-    border: none;
 
+.full-project-description {
+  word-wrap: break-word;
+  color: #8E9090;
+}
 
+.Content {
+  display: grid;
+  padding: 10px;
+  border-radius: 10px;
+  grid-template-columns: 20% 45% 15% 20%;
+
+  border: 1px solid #eeeeee;
+}
+
+.Content .buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.Content .edit button {
+  background-color: #f6e3c8;
+  border-radius: 5px;
+  width: 110px;
+  height: 40px;
+  border: none;
+}
+
+.Content .delete button {
+  background-color: #fccdcb;
+  border: none;
+  width: 110px;
+  height: 40px;
+  border-radius: 5px;
+}
+.Content .delete button i, .Content .edit button i{
+    padding-right: 10px;
 }
 /* Contents hover */
 
-.Contents:hover{
-    transform: scale(1.1);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    transform: translateY(-5px);
-    padding: 10px;
-    cursor: pointer;
+.Contents:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+  padding: 10px;
+  cursor: pointer;
+  
 }
-.Contents .project-description:hover{
-    width: 100%;
+
+.Contents:hover p{
+  width: 100%;
+  white-space:normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+.Contents:hover .buttons{
+display: flex;
+}
+.Contents:hover{
+    grid-template-columns: 20% 35% 22% 20%;
 }
 /* nav */
 nav {
-    background-color: white;
-    display: grid;
-    grid-template-columns: 20% 80%;
-    padding: 5px 2em;
+  background-color: white;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  padding: 5px 2em;
 }
-.avatar img{
-    width: 50px;
-    height: 50px;
-}
-.nav-tools{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 15px;
 
+.avatar img {
+  width: 50px;
+  height: 50px;
 }
-.name{
-    font-weight: bold;
+
+.nav-tools {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
 }
-.account-details{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
+
+.name {
+  font-weight: bold;
+  color: #191919;
 }
-.account-details img{
-    border-radius: 50%;
-    padding: 3px;
-    background-color: #F4CE9B;
+
+.account-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 }
+
+.account-details img {
+  border-radius: 50%;
+  padding: 3px;
+  background-color: #f4ce9b;
+}
+
 /* login */
 .login {
-    font-weight:bold;
-    font-size: 20px;
-    padding: 10px 24px;
-    background-color: #6F3FF3;
-    border-radius: 10px;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 10px 24px;
+  background-color: #6f3ff3;
+  border-radius: 10px;
 }
-.login a{
-    color: white;
+
+.login a {
+  color: white;
 }
-.login:hover{
-    border: 1px solid #b79ff9;  
+
+.login:hover {
+  border: 1px solid #b79ff9;
 }
+
 /* ........................................ */
 /* View All Tasks */
-.hello{
-    background-color: red;
+.hello {
+  background-color: red;
 }
