@@ -6,12 +6,14 @@
 
 ?>
 
-<?php get_header(); ?>
 <?php
 $avatar = get_template_directory_uri() . '/custom/memoji-modified.png';
 ?>
 
 <section class="Widely-View-Projects">
+    <div>
+        <?php get_header(); ?>
+    </div>
     <div class="Content">
         <div class="profile-pic">
             <div class="avatar">
@@ -28,14 +30,7 @@ $avatar = get_template_directory_uri() . '/custom/memoji-modified.png';
                 Reiciendis tempore quis ipsum! Consequatur nesciunt, iusto dolores explicabo illo doloremque
                 perspiciatis. Nobis praesentium sapiente itaque in veniam! Ad impedit sed eaque?</p>
         </div>
-        <div class="buttons">
-            <div class="edit">
-                <button>Edit</button>
-            </div>
-            <div class="delete">
-                <button>Delete</button>
-            </div>
-        </div>
+
         <div class="Status">
             <div class="status-tracker">
                 <div>
@@ -53,6 +48,14 @@ $avatar = get_template_directory_uri() . '/custom/memoji-modified.png';
                     <p>Launched</p>
                     <i class="bi bi-rocket-fill"></i>
                 </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <div class="edit">         
+                <button><i class="bi bi-pencil-square"></i>Edit</button>
+            </div>
+            <div class="delete">  
+                <button><i class="bi bi-trash3-fill"></i>Delete</button>
             </div>
         </div>
     </div>
