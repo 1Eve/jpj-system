@@ -29,13 +29,12 @@ if (isset($_POST['updatebtn'])) {
     $updatetask = $wpdb->update(
         $table,
         array(
-            'employee_name' => $employee_name,
             'project_title' => $project_title,
             'project_desc' => $project_desc,
             'due_date' => $due_date
         ),
         array(
-            'email' => $user->email
+            'employee_name' => $employee_name,
         )
     );
 
@@ -81,7 +80,7 @@ get_header();
     <!-- success message -->
     <?php
     echo '<div class="alert alert-success" role="alert" id="success">
-                New project created successfully
+                Project Updated!
              </div>';
 
     echo '<script> document.getElementById("success").style.display = "none"; </script>';
@@ -101,7 +100,7 @@ get_header();
     <!-- error message -->
     <?php
     echo '<div class="alert alert-danger" role="alert" id="error">
-               An error occurred while creating a new project. Please try again!
+               An error occurred while updating the project. Please try again!
              </div>';
 
     echo '<script> document.getElementById("error").style.display = "none"; </script>';
@@ -150,7 +149,7 @@ get_header();
                 <div class="d-flex flex-column justify-content-start align-items-start gap-2">
                     <label for="project_title">Project Title</label>
                     <div class="update-input">
-                        <input class="update-input" style="width: 400px; height: 36px;" type="text" name="project_title" placeholder="Enter project title">
+                        <input class="update-input" style="width: 400px; height: 36px;" type="text" name="project_title" placeholder="Enter project title" value="<?php echo $updatetask['project_title']?>">
                     </div>
                 </div>
                 <div class="d-flex flex-column justify-content-start align-items-start gap-2">
