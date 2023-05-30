@@ -1,6 +1,9 @@
 <?php
 
 function projecttheme_script_enqueue(){
+    wp_enqueue_style('customstyle', get_template_directory_uri() . '/custom/custom.css', [], '1.0.1', 'all');
+    wp_enqueue_script('customjs', get_template_directory_uri() . '/custom/custom.js', [], '1.0.1', true);
+
     //introducing bootstrap
     wp_register_style('bootstrapcss', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css', [], '5.2.3', 'all');
     wp_enqueue_style('bootstrapcss');
