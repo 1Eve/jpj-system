@@ -69,7 +69,13 @@ get_header();
         cursor: pointer;
         color: #FFFFFF;
         height: 45px;
-    }     
+    } 
+    .update-input input, textarea, select{
+        /* background: red; */
+        border: 1px solid #C5C6D0;
+        border-radius: 10px;
+        padding-left: 10px;
+    }    
 </style>
 
 <div>
@@ -118,13 +124,13 @@ get_header();
             <div class="d-flex flex-column justify-content-center align-items-center gap-2">
                 <div class="d-flex flex-column justify-content-start align-items-start gap-2">
                     <label for="employee_name">Employee Name</label>
-                    <div>
+                    <div class="update-input">
                         <?php
                             function get_employees() {
                                 // fetch employees
                                 $users = get_users();
                     
-                                $employee = '<select name="employee_name" class="round rounded-1" style="width: 300px; height: 36px;">';
+                                $employee = '<select name="employee_name" class="update-input" style="width: 300px; height: 36px;">';
                                 $employee .= '<option value="Select employee">Select employee</option>';
                             
                                 // Loop through the users and add options to the dropdown
@@ -146,19 +152,19 @@ get_header();
                 </div>
                 <div class="d-flex flex-column justify-content-start align-items-start gap-2">
                     <label for="project_title">Project Title</label>
-                    <div>
+                    <div class="update-input">
                         <input class="round rounded-1" style="width: 300px; height: 36px;" type="text" name="project_title" placeholder="Enter project title">
                     </div>
                 </div>
                 <div class="d-flex flex-column justify-content-start align-items-start gap-2">
                     <label for="project_desc">Project Description</label>
-                    <div>
+                    <div class="update-input">
                         <textarea cols="38" rows="4" class="round rounded-1" type="text" name="project_desc" value="Enter project description"></textarea>
                     </div>
                 </div>
                 <div class="d-flex flex-column justify-content-start align-items-start gap-2">
                     <label for="due_date">Due date</label>
-                    <div>
+                    <div class="update-input">
                         <input class="round rounded-1" style="width: 300px; height: 36px;" type="date" name="due_date">
                     </div>
                 </div>

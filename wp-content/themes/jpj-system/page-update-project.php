@@ -66,9 +66,8 @@ get_header();
         color: #FFFFFF;
         height: 45px;
     }
-    .update-input input{
-        background: red
-        ;
+    .update-input input, textarea, select{
+        /* background: red; */
         border: 1px solid #C5C6D0;
         border-radius: 10px;
         padding-left: 10px;
@@ -124,13 +123,29 @@ get_header();
                 <div class="d-flex flex-column justify-content-start align-items-start gap-2">
                     <label for="employee_name">Employee Name</label>
                     <div class="update-input">
-                        <select name="employee_name" class="update-input" style="width: 400px; height: 36px;">
-                            <option value="--select--">--select--</option>
-                            <option value="Employee A">Employee A</option>
-                            <option value="Employee B">Employee B</option>
-                            <option value="Employee C">Employee C</option>
-                        </select>
-                    </div>
+                    <?php
+                            function get_employees() {
+                                // fetch employees
+                                $users = get_users();
+                    
+                                $employee = '<select name="employee_name" class="round rounded-1" style="width: 300px; height: 36px;">';
+                                $employee .= '<option value="Select employee">Select employee</option>';
+                            
+                                // Loop through the users and add options to the dropdown
+                                foreach ($users as $user) {
+                                    $display_name = $user->display_name;
+                            
+                                    // Add an option for each employee
+                                    $employee .= '<option value="' . $display_name . '">' . $display_name . '</option>';
+                                }
+                            
+                                $employee .= '</select>';
+                        
+                                echo $employee;
+                            }
+                            get_employees();
+                            
+                        ?>
                 </div>
                 <div class="d-flex flex-column justify-content-start align-items-start gap-2">
                     <label for="project_title">Project Title</label>
