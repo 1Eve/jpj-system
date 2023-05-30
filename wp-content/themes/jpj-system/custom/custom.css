@@ -47,7 +47,7 @@ body {
   gap: 15px;
 }
 
-.Contents {
+.Contents, .user-contents {
   display: grid;
   grid-template-columns: 20% 60% 20%;
   margin-bottom: 10px;
@@ -168,13 +168,12 @@ body {
 }
 /* Contents hover */
 
-.Contents:hover {
+.Contents:hover, .user-contents:hover {
   transform: scale(1.1);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   transform: translateY(-5px);
   padding: 10px;
   cursor: pointer;
-  
 }
 
 .Contents:hover p{
@@ -249,4 +248,23 @@ nav {
 /* View All Tasks */
 .hello {
   background-color: red;
+}
+
+
+/* ................. */
+
+/* user dashboard */
+.user-contents{
+  grid-template-columns: 20% 45% 20% 15%;
+}
+.user-contents .edit button{
+  background-color: #CEFAD7;
+  border-radius: 5px;
+  width: 110px;
+  height: 40px;
+  border: none;
+  color: #286136;
+}
+.user-contents .edit button i{
+  padding-right: 10px;
 }
