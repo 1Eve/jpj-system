@@ -1,6 +1,84 @@
 body{
     background-color: #EFEEF3;
 }
+/* Dashboard */
+.Dashboard{
+    background-color: white;
+    display: flex;
+    gap: 10px;
+    padding: 0 2%;
+}
+/* Sidebar */
+.sidebar{
+}
+.sidebar>div{
+    display: flex;
+    gap: 10px;
+    padding-bottom: 30px;
+}
+
+/* Contents */
+.profile-pic{
+  
+}
+.project-info{
+ 
+    padding-top: 10px;
+}
+.profile-pic img{
+    background-color: #F4CE9B;
+    border-radius: 50%;
+    padding: 3px;
+}
+.Contents-Container{
+    border: 1px solid #EEEEEE;
+    padding: 15px ;
+    border-radius: 10px;
+}
+.Contents-header{
+    display: grid;
+    grid-template-columns: 80% 20%;
+    padding-bottom: 10px;
+    
+}
+.Contents-header div:nth-child(2){
+    display: flex;
+    gap: 10px;
+}
+.Contents{
+    display: grid;
+    grid-template-columns: 15% 65% 20%;
+   
+
+}
+.Status{
+    display: flex;
+ 
+}
+.Status div:first-child{
+    margin-right: 10px;
+}
+.rocket{
+    display: flex;
+    justify-content: space-between;
+}
+.employee-name, .project-title{
+    font-weight: 600;
+    font-size: 20px;
+}
+.project-description{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 60%;
+}
+.status-tracker>div p{
+    font-weight: 600;
+    
+}
+.Status P{
+    font-size: 14px;
+}
 /* nav */
 nav {
     background-color: white;
@@ -31,11 +109,12 @@ nav {
 .account-details img{
     border-radius: 50%;
     padding: 3px;
-    background-color: pink;
+    background-color: #F4CE9B;
 }
 /* login */
 .login {
-    font-weight: 600;
+    font-weight:bold;
+    font-size: 20px;
     padding: 10px 24px;
     background-color: #6F3FF3;
     border-radius: 10px;
@@ -45,4 +124,9 @@ nav {
 }
 .login:hover{
     border: 1px solid #b79ff9;  
+}
+/* ........................................ */
+/* View All Tasks */
+.hello{
+    background-color: red;
 }
