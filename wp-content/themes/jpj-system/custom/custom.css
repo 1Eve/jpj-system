@@ -6,19 +6,69 @@ body {
 .Dashboard {
   background-color: white;
   display: grid;
-  grid-template-columns: 18% 80%;
-  padding: 0 2%;
+  grid-template-columns: 20% 80%;
+  padding: 0 2% 0 0;
+  height: 100vh;
 }
 
 /* Sidebar */
 .sidebar {
+  padding-top: 90px;
+  border-right: 1px solid #EEEEEE;
+  margin-right: 10px;
+  height: 100%;
+}
+.sidebar-link{
+  padding-left: 20px;
+}
+.sidebar-link div{
+   padding-left: 5px;
+
+}
+.side-bar-details{
+  width: 80%;
+}
+.side-bar-details>div{
+margin-bottom: 30px;
+display: flex;
+border-top: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+  border-left: 5px solid #6f3ff300;
+}
+.side-bar-details a{
+  margin-left: 10px;
+}
+.aarrow{
+  display: flex;
+  justify-content: flex-end;
+  margin-left: auto;
 }
 
-.sidebar > div {
-  display: flex;
-  gap: 10px;
-  padding-bottom: 30px;
+
+.side-bar-details>div:hover{
+  border-top: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+  border-left: 5px solid #6f3ff3;
+  border-right: none;
+  cursor: pointer;
 }
+.sidebar-link>div>div{
+  padding-left: 10px;
+}
+.bi-chevron-right {
+  display: none;
+}
+
+.side-bar-details>div:hover .bi-chevron-right{
+ display: block;
+}
+.side-bar-details>div:hover span{
+  color: #6f3ff3;
+}
+/* .sidebar > div {
+  display: flex;
+  gap: 10px; 
+} */
 
 /* Contents */
 .project-info {
@@ -35,6 +85,7 @@ body {
   border: 1px solid #eeeeee;
   padding: 15px;
   border-radius: 10px;
+  height: 100%;
 }
 
 .Contents-header {
@@ -139,7 +190,7 @@ body {
   padding: 10px;
   border-radius: 10px;
   grid-template-columns: 20% 45% 15% 20%;
-
+  height: 100%;
   border: 1px solid #eeeeee;
 }
 
@@ -195,6 +246,7 @@ nav {
   display: grid;
   grid-template-columns: 20% 80%;
   padding: 5px 2em;
+  border-radius: 10px 10px 0 0;
 }
 
 .avatar img {
@@ -228,21 +280,32 @@ nav {
 }
 
 /* login */
-.login {
+ .login {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 16px;
   padding: 10px 24px;
   background-color: #6f3ff3;
   border-radius: 10px;
+  border: none;
+  border: 1px solid #b79ff900;
 }
+.loginform{
+  background-color: #6f3ff3;
+  border: none;
 
-.login a {
+}
+input[type="submit"] {
   color: white;
 }
-
+.login-a a{
+  color: white;
+}
+nav i{
+  color: white;
+}
 .login:hover {
   border: 1px solid #b79ff9;
-}
+} 
 
 /* ........................................ */
 /* View All Tasks */
@@ -267,4 +330,79 @@ nav {
 }
 .user-contents .edit button i{
   padding-right: 10px;
+}
+
+/* .................. */
+/* Login */
+.login-container{
+  height: 100vh;
+  padding: 80px 60px;
+  /* width: 100%; */
+}
+.login-container>div{
+  background-color: white;
+  border-radius: 10px;
+  /* width: 100%; */
+  padding-left: 30px;
+  
+}
+.login-form{
+  display: grid;
+  border-radius: 10px;
+  grid-template-columns: 50% 50%;
+  height:88%;
+}
+.login-details-container form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 50%;
+  gap: 10px;
+  width: 60%;
+}
+.login-form input[type=text] input[type=password]{
+width: 60px;
+border-radius: 5px;
+padding: 10px;
+border:1px solid #EEEEEE;
+
+}
+.login-form input[type=submit]  {
+width: 60px;
+border-radius: 5px;
+margin-top: 30px;
+padding: 10px;
+background-color: #6f3ff3;
+border: none;
+
+width: 360px;
+}
+.login-picture-container img{
+  width: 550px;
+  height: 387px;
+}
+.login-picture-container{
+  padding-top: 50px;
+  background-color: #6f3ff3;
+  border-radius: 0 0  10px 0;
+}
+.login-picture-container{
+  /* position: relative; */
+}
+.login-picture-container>div{
+/* position: absolute; */
+bottom: 0;
+}
+
+
+/* employees */
+.employee-section{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.Contents-employee{
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }

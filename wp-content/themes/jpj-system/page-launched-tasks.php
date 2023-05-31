@@ -24,30 +24,52 @@ $tasks = $wpdb->get_results("SELECT * FROM $table where status='Launched'");
 
 
 <section class="Dashboard">
-    <div class="sidebar">
-        <div>
-            <i class="bi bi-microsoft"></i>
-            <a href="/jpj-system/">Dashboard</a>
-        </div>
-        <div>
-            <i class="bi bi-plus-square-fill"></i>
-            <a href="/jpj-system/create-project">Add New Task</a>
-        </div>
-        <div>
-            <i class="bi bi-binoculars-fill"></i>
-            <a href="/jpj-system/view-all-tasks">View All Tasks</a>
-        </div>
-        <div>
-            <i class="bi bi-check2-circle"></i>
-            <a href="/jpj-system/completed-tasks">Completed Tasks</a>
-        </div>
-        <div>
-            <i class="bi bi-trash3-fill"></i>
-            <a href="/jpj-system/trash">Trash</a>
-        </div>
-        <div>
-            <i class="bi bi-people-fill"></i>
-            <a href="/jpj-system/employees">All Employees</a>
+<div class="sidebar">
+        <div class="sidebar-link">
+            <div class="side-bar-details">
+                <div>
+                    <span><i class="bi bi-microsoft"></i></span>
+                    <a href="/jpj-system/admin/">Dashboard</a>
+                    <div class="aarrow">
+                        <i class=" bi bi-chevron-right"></i>
+                    </div>
+                </div>
+                <div>
+                    <span><i class="bi bi-plus-square-fill"></i></span>
+                    <a href="/jpj-system/create-project">Add New Task</a>
+                    <div class="aarrow">
+                        <i class=" bi bi-chevron-right"></i>
+                    </div>
+                </div>
+                <div>
+                    <span><i class="bi bi-binoculars-fill"></i></span>
+                    <a href="/jpj-system/view-all-tasks">View All Tasks</a>
+                    <div class="aarrow">
+                        <i class=" bi bi-chevron-right"></i>
+                    </div>
+                </div>
+                <div>
+                    <span><i class="bi bi-check2-circle"></i></span>
+                    <a href="/jpj-system/completed-tasks">Completed Tasks</a>
+                    <div class="aarrow">
+                        <i class=" bi bi-chevron-right"></i>
+                    </div>
+                </div>
+                <div>
+                    <span><i class="bi bi-trash3-fill"></i></span>
+                    <a href="/jpj-system/trash">Trash</a>
+                    <div class="aarrow">
+                        <i class=" bi bi-chevron-right"></i>
+                    </div>
+                </div>
+                <div>
+                    <span><i class="bi bi-people-fill"></i></span>
+                    <a href="/jpj-system/employees">All Employees</a>
+                    <div class="aarrow">
+                        <i class=" bi bi-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
