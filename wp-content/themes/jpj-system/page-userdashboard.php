@@ -39,18 +39,29 @@ if (is_user_logged_in()) {
 ?>
     <?php get_header(); ?>
 
-    <section class="Dashboard">
-        <div class="sidebar">
-            <div>
-                <i class="bi bi-microsoft"></i>
-                <a href="">Dashboard</a>
-            </div>
-            <div>
-                <i class="bi bi-check2-circle"></i>
-                <a href="">Completed Tasks</a>
+
+<section class="Dashboard">
+    <div class="sidebar">
+        <div class="sidebar-link">
+            <div class="side-bar-details">
+                <div>     
+                    <span><i class="bi bi-microsoft"></i></span> 
+                    <a href="/jpj-system/user-dashboard/">Dashboard</a>
+                    <div class="aarrow">
+                        <i class=" bi bi-chevron-right"></i>
+                    </div>
+                </div>
+                <div>
+                    <span><i class="bi bi-check2-circle"></i></span>
+                    <a href="/jpj-system/user-clicked-project/">Completed Tasks</a>
+                    <div class="aarrow">
+                        <i class=" bi bi-chevron-right"></i>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="Contents-Container">
+    </div>
+    <div class="Contents-Container">
             <div class="Contents-header">
                 <div>
                     <p>All Task</p>
@@ -123,6 +134,5 @@ if (is_user_logged_in()) {
                 </div>
             </a>
         </div>
-    </section>
-
+    
 <?php } ?>

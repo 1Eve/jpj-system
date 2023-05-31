@@ -32,59 +32,65 @@ $logo = get_template_directory_uri() . '/custom/memoji.png';
 <body>
     <?php
 
-    $curent_page = basename(get_permalink());
-    if ($curent_page == 'login') {
+$curent_page = basename(get_permalink());
+if ($curent_page == 'login') {
     ?>
-        <div class="text-center bg-light text-white pb-3 pt-3 mb-4">
-            <nav>
-                <a href="/jpj-system/">JPJ Management System</h2>
-            </nav>
-        </div>
+    <div class="text-center bg-light  pb-3 pt-3 mb-4">
+        <nav>
+            <a href="/jpj-system/">JPJ Management System</h2>
+        </nav>
+    </div>
 
     <?php
-    } else {
-        if (is_user_logged_in()) :
-            $user = wp_get_current_user();
-            $name = $user->display_name;
-           
-    
-            global $wpdb;
-            $table = $wpdb->prefix . 'users';
-            $email = $user->user_email;
-    
-        endif;
+} else {
+    if (is_user_logged_in()):
+        $user = wp_get_current_user();
+        $name = $user->display_name;
+
+
+        global $wpdb;
+        $table = $wpdb->prefix . 'users';
+        $email = $user->user_email;
+
+    endif;
     ?>
-        <nav>
+<nav>
             <div class="logo">
                 <h1>JPJ PMS</h1>
             </div>
             <div class="nav-tools">
                 <div class="account-details">
-                    <?php 
-                    if(is_user_logged_in()){
-                        ?>
-                    <div class="name">
-                        <span><?php
-                                echo  $name ;
-                                ?></span>
-                    </div>
-                    <div class="avatar">
-                        <img src="<?php echo $avatar ?>" alt="avatar">
-                    </div>
                     <?php
-                    }?>
-                </div>
-                <div class="login">
-                <?php
                     if (is_user_logged_in()) {
-                    ?><form action="logout.php" method="POST">
-                            <input name="logout" type="submit" value="Logout" >
+                        ?>
+                        <div class="name">
+                            <span>
+                                <?php
+                                echo $name;
+                                ?>
+                            </span>
+                        </div>
+                        <div class="avatar">
+                            <img src="<?php echo $avatar ?>" alt="avatar">
+                        </div>
+                        <?php
+                    } ?>
+                </div>
+                <div class="login-a">
+                    <?php
+                    if (is_user_logged_in()) {
+                        ?>
+                        <form action="logout.php" method="POST">
+                            <div class="login">
+                                <input class="loginform" name="logout" type="submit" value="Logout">
+                                <i></i><i class="bi bi-box-arrow-right"></i>
+                            </div>
                         </form>
-                    <?php
+                        <?php
                     } else {
-                    ?>
-                    <a href="/jpj-system/login">Login</a>
-                    <?php
+                        ?>
+                        <a class="login" href="/jpj-system/login">Login</a>
+                        <?php
                     }
                     ?>
                 </div>
