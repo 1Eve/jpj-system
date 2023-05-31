@@ -6,10 +6,10 @@
 
 ?>
 <?php
-// if ( ! current_user_can( 'administrator' ) || ! is_admin() ) {
-//     wp_redirect('/jpj-system/user-dashboard');
-//     exit;
-// }
+if ( !current_user_can( 'manage_options' )) {
+    wp_redirect('/jpj-system/user-dashboard');
+    exit;
+}
 
 global $wpdb;
 
@@ -48,10 +48,10 @@ if (isset($_POST['createbtn'])) {
     ];
 
     //check if user has been assigned a task
-    $is_assigned = $wpdb->get_row("SELECT * FROM $table WHERE employee_name = '{$_POST['employee_name']}' AND status = 'Unlaunched' AND status = 'Launched'");
-    if ($is_assigned) {
-        echo "<script>alert('Employee has been assigned another task')</script>";
-    } else {
+    // $is_assigned = $wpdb->get_row("SELECT * FROM $table WHERE employee_name = '{$_POST['employee_name']}' AND status = 'Unlaunched' AND status = 'Launched'");
+    // if ($is_assigned) {
+    //     echo "<script>alert('Employee has been assigned another task')</script>";
+    // } else {
     $newtask = $wpdb->insert($table, $project);
 
     if ($newtask == true) {
@@ -65,7 +65,7 @@ if (isset($_POST['createbtn'])) {
         $errormessage = true;
     }
     
-}
+// }
 
     var_dump($newtask);
     // wp_redirect('/jpj-system/');

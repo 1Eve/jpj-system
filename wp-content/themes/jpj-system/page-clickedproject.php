@@ -8,10 +8,10 @@
 
 <?php get_header(); ?>
 <?php
-// if ( ! current_user_can( 'administrator' ) || ! is_admin() ) {
-//     wp_redirect('/jpj-system/user-dashboard');
-//     exit;
-// }
+if ( !current_user_can( 'manage_options' )) {
+    wp_redirect('/jpj-system/user-dashboard');
+    exit;
+}
 
 $avatar = get_template_directory_uri() . '/custom/memoji-modified.png';
 

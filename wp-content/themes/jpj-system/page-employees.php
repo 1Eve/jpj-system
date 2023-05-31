@@ -6,10 +6,10 @@
 
 ?>
 <?php
-// if ( ! current_user_can( 'administrator' ) || ! is_admin() ) {
-//     wp_redirect('/jpj-system/user-dashboard');
-//     exit;
-// }
+if ( !current_user_can( 'manage_options' )) {
+    wp_redirect('/jpj-system/user-dashboard');
+    exit;
+}
 
 $avatar = get_template_directory_uri() . '/custom/memoji-modified.png';
 
@@ -17,6 +17,11 @@ global $wpdb;
 $table = $wpdb->prefix . 'users';
 
 $employees = $wpdb->get_results("SELECT * FROM $table");
+
+if(isset($_POST['search'])){
+    $search = $_POST['searchinput'];
+    $employees = $wpdb->get_results("SELECT * FROM $table WHERE display_name LIKE '%$search%'");
+}
 ?>
 <?php get_header(); ?>
 
@@ -55,8 +60,11 @@ $employees = $wpdb->get_results("SELECT * FROM $table");
     <div class="Contents-Container">
         <div class="Contents-header">
             <div>
-                <input type="search" name="serch" placeholder="Who are you looking for?">
-                <p>All Employees</p>
+                <form action="" method="post">
+                    <input type="search" name="searchinput" placeholder="Who are you looking for?">
+                    <button name="search" type="submit">Search</button>
+                </form>
+                <!-- <p>All Employees</p> -->
             </div>
             <div style="display: none;">
                 <i class="bi bi-laptop"></i>
