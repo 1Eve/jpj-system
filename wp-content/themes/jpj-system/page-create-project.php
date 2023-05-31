@@ -6,6 +6,11 @@
 
 ?>
 <?php
+// if ( ! current_user_can( 'administrator' ) || ! is_admin() ) {
+//     wp_redirect('/jpj-system/user-dashboard');
+//     exit;
+// }
+
 global $wpdb;
 
 global $successmessage;
@@ -22,6 +27,7 @@ $project_info = "CREATE TABLE IF NOT EXISTS " . $table . "(
     project_title text NOT NULL,
     project_desc text NOT NULL,
     due_date text NOT NULL,
+    user_description text NOT NULL,
     status text DEFAULT 'Unlaunched',
     is_deleted int DEFAULT 0
 );";
@@ -41,9 +47,9 @@ if (isset($_POST['createbtn'])) {
         'due_date' => $_POST['due_date'],
     ];
 
-    //check if user has been assigned
-    $assignedTask = $wpdb->get_row("SELECT * FROM $table WHERE employee_name = '{$_POST['employee_name']}' AND status = 'Unlaunched' AND status = 'Launched'");
-    if ($assignedTask) {
+    //check if user has been assigned a task
+    $is_assigned = $wpdb->get_row("SELECT * FROM $table WHERE employee_name = '{$_POST['employee_name']}' AND status = 'Unlaunched' AND status = 'Launched'");
+    if ($is_assigned) {
         echo "<script>alert('Employee has been assigned another task')</script>";
     } else {
     $newtask = $wpdb->insert($table, $project);
@@ -58,12 +64,40 @@ if (isset($_POST['createbtn'])) {
     } else {
         $errormessage = true;
     }
+    
 }
 
     var_dump($newtask);
-    // wp_redirect('/jpj-system');
+    // wp_redirect('/jpj-system/');
     
 }
+
+// if (isset($_POST['createbtn'])) {
+//     $project = [
+//         'employee_name' => $_POST['employee_name'],
+
+//     ];
+
+//     //check if user has been assigned a task
+//     $is_assigned = $wpdb->get_row("SELECT * FROM $table WHERE employee_name = '{$_POST['employee_name']}' AND status = 'Unlaunched' AND status = 'Launched'");
+//     if ($is_assigned) {
+//         echo "<script>alert('Employee description has been added')</script>";
+//     } else {
+//     $newtask = $wpdb->update($table, $project);
+
+//     if ($newtask == true) {
+//         $successmessage = true;
+
+//         $project['employee_name'] = '';
+//         $project['employee_description'] = '';
+    
+//     } else {
+//         $errormessage = true;
+//     }
+    
+// }
+    
+// }
 
 get_header();
 

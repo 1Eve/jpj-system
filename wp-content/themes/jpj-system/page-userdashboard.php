@@ -7,6 +7,18 @@
 ?>
 <?php
 $avatar = get_template_directory_uri() . '/custom/memoji-modified.png';
+
+if(is_user_logged_in()){
+    $user = wp_get_current_user();
+    $name = $user->display_name;
+    
+
+    global $wpdb;
+    $table = $wpdb->prefix . 'users';
+    $project = $wpdb->prefix . 'projects';
+
+    $tasks = $wpdb->get_row("SELECT * FROM $project where employee_name = $name");
+
 ?>
 <?php get_header(); ?>
 
@@ -39,14 +51,11 @@ $avatar = get_template_directory_uri() . '/custom/memoji-modified.png';
                     <div class="avatar">
                         <img src="<?php echo $avatar ?>" alt="avatar">
                     </div>
-                    <p class="employee-name">Employee Name</p>
+                    <p class="employee-name"><?php $tasks->employee_name; ?></p>
                 </div>
                 <div class="project-info">
-                    <p class="project-title">Sample Title</p>
-                    <p class="project-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris</p>
+                    <p class="project-title"><?php $tasks->project_title; ?></p>
+                    <p class="project-description"><?php $tasks->project_desc; ?></p>
                 </div>
                 <div class="Status">
                     <div class="status-tracker">
@@ -59,10 +68,10 @@ $avatar = get_template_directory_uri() . '/custom/memoji-modified.png';
                     </div>
                     <div>
                         <div>
-                            <p>April 15, 2023</p>
+                            <p><?php $tasks->due_date; ?></p>
                         </div>
                         <div class="rocket">
-                            <p>Launched</p>
+                            <p><?php $tasks->status; ?></p>
                             <i class="bi bi-rocket-fill"></i>
                         </div>
                     </div>
@@ -79,3 +88,5 @@ $avatar = get_template_directory_uri() . '/custom/memoji-modified.png';
     </div>
 
 </section>
+
+<?php } ?>

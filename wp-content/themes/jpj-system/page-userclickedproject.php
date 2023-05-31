@@ -7,6 +7,7 @@
 ?>
 <?php
 $avatar = get_template_directory_uri() . '/custom/memoji-modified.png';
+
 ?>
 <section class="Widely-View-Projects">
     <div>
