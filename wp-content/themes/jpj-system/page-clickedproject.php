@@ -8,7 +8,7 @@
 
 <?php get_header(); ?>
 <?php
-if ( !current_user_can( 'manage_options' )) {
+if (!current_user_can('manage_options')) {
     wp_redirect('/jpj-system/user-dashboard');
     exit;
 }
@@ -25,7 +25,7 @@ var_dump($id);
 $task = $wpdb->get_row("SELECT * FROM $table WHERE id = $id");
 
 
-if (isset($_POST['deletebtn'])) {
+if (isset($_POST['delete_btn'])) {
     $id = $_POST['delete_id'];
 
 
@@ -75,11 +75,14 @@ if (isset($_POST['deletebtn'])) {
             </div>
         </div>
         <div class="buttons">
-            <div class="edit">         
-                <button><i class="bi bi-pencil-square"></i>Edit</button>
+            <div class="edit">
+                <a href="<?php echo site_url('jpj-system/update-project?id=').$id; ?>"><button><i class="bi bi-pencil-square"></i>Edit</button></a>
             </div>
-            <div class="delete">  
-                <button><i class="bi bi-trash3-fill"></i>Delete</button>
+            <div class="delete">
+                <form action="" method="POST">
+                    <input type="hidden" name="delete_id" value="<?php echo $task->id; ?>">
+                    <button type="submit" name="delete_btn"><i class="bi bi-trash3-fill"></i>Delete</button>
+                </form>
             </div>
         </div>
     </div>
