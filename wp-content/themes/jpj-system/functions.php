@@ -62,9 +62,10 @@ add_shortcode('login', function(){
         if (!is_wp_error($user)) {
             wp_set_current_user($user->ID);
             wp_set_auth_cookie($user->ID);
+            
             do_action('wp_login', $user->user_login, $user);
     
-            wp_redirect('/jpj-system/create-project');
+            wp_redirect('/jpj-system/launched-tasks');
             exit;
         }
         $error = "Invalid email or password";
@@ -93,8 +94,7 @@ add_shortcode('login', function(){
     $logincode .= '<div>';
     $logincode .= '<input type="submit" name="loginbtn" value="Login" style="width: 100%; height: 45px; border: hidden; border-radius: 10px; color: white; cursor: hover; background-color: #6E3EF3; margin-top: 30px;">';
     $logincode .= '</div>';
-    $logincode .= '</form>';
-    $logincode .= '</div>';
+    $logincode .= '</form></div>';
     $logincode .='<div class="login-image w-50" style="background-color: #6E3EF3; position: relative">';
     $logincode .= '<img src='. $login_img.' alt="logo" class="image" style="position: absolute;"/>';
     $logincode .='</div>';

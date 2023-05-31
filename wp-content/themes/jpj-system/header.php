@@ -1,3 +1,18 @@
+    <?php
+        if(isset($_POST['logout'])){
+            wp_logout();
+            wp_redirect('/jpj-system/login');
+        }
+
+        $results = wp_remote_post('http://localhost/jpj-system/wp-json/jwt-auth/v1/token', [
+            'body' => [
+                'username' => 'admin',
+                'password' => 'admin'
+            ]
+        ]);
+        $results = json_decode(wp_remote_retrieve_body($results));
+        $GLOBALS['token'] = $results->token;
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,12 +30,6 @@ $logo = get_template_directory_uri() . '/custom/memoji.png';
 ?>
 
 <body>
-    <?php
-        if(isset($_POST['logout'])){
-            wp_logout();
-            wp_redirect('/jpj-system/login');
-        }
-    ?>
     <?php
 
     $curent_page = basename(get_permalink());

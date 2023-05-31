@@ -1,0 +1,119 @@
+<?php
+
+/**
+ * @package Custom_Endpoint
+ */
+
+
+class EmployeeRoutes{
+    public function register_employee_routes(){
+        register_rest_route(
+            'employees/v1',
+            'employees',
+            [
+                'callback'=>[$this, 'fetch_employees'],
+                'method'=>'GET',
+                'permission_callback'=> [$this, 'endpoint_authentication']
+            ]
+        );
+
+        register_rest_route(
+            'employees/v1',
+            'employees/(?P<id>\d+)',
+            [
+                'callback'=>[$this, 'create_employee'],
+                'method'=>'POST',
+                'permission_callback'=> [$this, 'endpoint_authentication']
+            ]
+        );
+
+        register_rest_route(
+            'employees/v1',
+            'employees/(?P<id>\d+)',
+            [
+                'callback'=>[$this, 'single_employee'],
+                'method'=>'GET',
+                'permission_callback'=> [$this, 'endpoint_authentication']
+            ]
+        );
+
+        register_rest_route(
+            'employees/v1',
+            'employees/(?P<id>\d+)',
+            [
+                'callback'=>[$this, 'update_employee'],
+                'method'=>'PUT',
+                'permission_callback'=> [$this, 'endpoint_authentication']
+            ]
+        );
+
+        register_rest_route(
+            'employees/v1',
+            'employees/(?P<id>\d+)',
+            [
+                'callback'=>[$this, 'delete_employee'],
+                'method'=>'DELETE',
+                'permission_callback'=> [$this, 'endpoint_authentication']
+            ]
+        );
+
+    }
+
+    public function fetch_employees(){
+        global $wpdb;
+        $table = $wpdb->prefix . 'users';
+        $employees = $wpdb->get_results("SELECT * FROM $table");
+        return $employees;
+    }
+
+    public function create_employee($data){
+        global $wpdb;
+        $table = $wpdb->prefix . 'users';
+        $employee = [
+            'employee_name' => $data['employee_name'],
+            'employee_number' => $data['employee_number'],
+            'employee_email' => $data['employee_email'],
+            'employee_password' => $data['employee_password'],
+            'employee_role' => $data['employee_role'],
+        ];
+
+        $wpdb->insert($table, $employee);
+        return $employee;
+    }
+
+    public function single_employee($data){
+        global $wpdb;
+        $table = $wpdb->prefix . 'users';
+        $employee = $wpdb->get_row("SELECT * FROM $table WHERE id = $data[id]");
+        return $employee;
+    }
+
+    public function update_employee($data){
+        global $wpdb;
+        $table = $wpdb->prefix . 'users';
+        $employee = [
+            'employee_name' => $data['employee_name'],
+            'employee_number' => $data['employee_number'],
+            'employee_email' => $data['employee_email'],
+            'employee_password' => $data['employee_password'],
+            'employee_role' => $data['employee_role'],
+        ];
+
+        $id = $data['id'];
+        $condition = ['id' => $id];
+
+        $wpdb->update($table, $employee, $condition);
+        return $employee;
+    }
+
+    public function delete_employee($data){
+        global $wpdb;
+        $table = $wpdb->prefix . 'users';
+        $wpdb->delete($table, ['id' => $data['id']]);
+        return 'Employee deleted';
+    }
+
+    public function endpoint_authentication(){
+        return true;
+    }
+}
