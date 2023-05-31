@@ -6,7 +6,7 @@
 
 ?>
 <?php
-if ( !current_user_can( 'manage_options' )) {
+if (!current_user_can('manage_options')) {
     wp_redirect('/jpj-system/user-dashboard');
     exit;
 }
@@ -48,28 +48,27 @@ if (isset($_POST['createbtn'])) {
     ];
 
     //check if user has been assigned a task
-    // $is_assigned = $wpdb->get_row("SELECT * FROM $table WHERE employee_name = '{$_POST['employee_name']}' AND status = 'Unlaunched' AND status = 'Launched'");
-    // if ($is_assigned) {
-    //     echo "<script>alert('Employee has been assigned another task')</script>";
-    // } else {
-    $newtask = $wpdb->insert($table, $project);
-
-    if ($newtask == true) {
-        $successmessage = true;
-
-        $project['employee_name'] = '';
-        $project['project_title'] = '';
-        $project['emloyee_number'] = '';
-        $project['project_desc'] = '';
+    $is_assigned = $wpdb->get_row("SELECT * FROM $table WHERE employee_name = '" . $_POST['employee_name'] . "'");
+    if ($is_assigned) {
+        echo "<script>alert('Employee has been assigned another task')</script>";
     } else {
-        $errormessage = true;
-    }
-    
-// }
+        $newtask = $wpdb->insert($table, $project);
 
-    var_dump($newtask);
-    // wp_redirect('/jpj-system/');
-    
+        if ($newtask == true) {
+            $successmessage = true;
+
+            $project['employee_name'] = '';
+            $project['project_title'] = '';
+            $project['emloyee_number'] = '';
+            $project['project_desc'] = '';
+        } else {
+            $errormessage = true;
+        }
+    }
+
+    // var_dump($newtask);
+    wp_redirect('/jpj-system/admin');
+
 }
 
 // if (isset($_POST['createbtn'])) {
@@ -90,13 +89,13 @@ if (isset($_POST['createbtn'])) {
 
 //         $project['employee_name'] = '';
 //         $project['employee_description'] = '';
-    
+
 //     } else {
 //         $errormessage = true;
 //     }
-    
+
 // }
-    
+
 // }
 
 get_header();
@@ -104,7 +103,7 @@ get_header();
 ?>
 
 <style>
-    .create-btn{
+    .create-btn {
         background-color: #6E3EF3;
         width: 80%;
         border: hidden;
@@ -112,13 +111,16 @@ get_header();
         cursor: pointer;
         color: #FFFFFF;
         height: 45px;
-    } 
-    .update-input input, textarea, select{
+    }
+
+    .update-input input,
+    textarea,
+    select {
         /* background: red; */
         border: 1px solid #C5C6D0;
         border-radius: 10px;
         padding-left: 10px;
-    }    
+    }
 </style>
 
 <div>
@@ -169,27 +171,28 @@ get_header();
                     <label for="employee_name">Employee Name</label>
                     <div class="update-input">
                         <?php
-                            function get_employees() {
-                                // fetch employees
-                                $users = get_users();
-                    
-                                $employee = '<select name="employee_name" class="update-input" style="width: 300px; height: 36px;">';
-                                $employee .= '<option value="Select employee">Select employee</option>';
-                            
-                                // Loop through the users and add options to the dropdown
-                                foreach ($users as $user) {
-                                    $display_name = $user->display_name;
-                            
-                                    // Add an option for each employee
-                                    $employee .= '<option value="' . $display_name . '">' . $display_name . '</option>';
-                                }
-                            
-                                $employee .= '</select>';
-                        
-                                echo $employee;
+                        function get_employees()
+                        {
+                            // fetch employees
+                            $users = get_users();
+
+                            $employee = '<select name="employee_name" class="update-input" style="width: 300px; height: 36px;">';
+                            $employee .= '<option value="Select employee">Select employee</option>';
+
+                            // Loop through the users and add options to the dropdown
+                            foreach ($users as $user) {
+                                $display_name = $user->display_name;
+
+                                // Add an option for each employee
+                                $employee .= '<option value="' . $display_name . '">' . $display_name . '</option>';
                             }
-                            get_employees();
-                            
+
+                            $employee .= '</select>';
+
+                            echo $employee;
+                        }
+                        get_employees();
+
                         ?>
                     </div>
                 </div>
