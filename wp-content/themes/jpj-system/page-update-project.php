@@ -6,6 +6,11 @@
 
 ?>
 <?php
+// if ( ! current_user_can( 'administrator' ) || ! is_admin() ) {
+//     wp_redirect('/jpj-system/user-dashboard');
+//     exit;
+// }
+
 global $wpdb;
 
 global $successmessage;

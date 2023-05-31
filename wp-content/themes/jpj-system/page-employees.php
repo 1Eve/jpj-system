@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Name: Launched Tasks Page
+ * Template Name: Employees Page
  */
 
 ?>
@@ -14,9 +14,9 @@
 $avatar = get_template_directory_uri() . '/custom/memoji-modified.png';
 
 global $wpdb;
-$table = $wpdb->prefix . 'projects';
+$table = $wpdb->prefix . 'users';
 
-$tasks = $wpdb->get_results("SELECT * FROM $table where status='Completed'");
+$employees = $wpdb->get_results("SELECT * FROM $table");
 ?>
 <?php get_header(); ?>
 
@@ -55,61 +55,34 @@ $tasks = $wpdb->get_results("SELECT * FROM $table where status='Completed'");
     <div class="Contents-Container">
         <div class="Contents-header">
             <div>
-                <p>Launched Tasks</p>
+                <input type="search" name="serch" placeholder="Who are you looking for?">
+                <p>All Employees</p>
             </div>
-            <div>
+            <div style="display: none;">
                 <i class="bi bi-laptop"></i>
                 <p>Status Tracker</p>
             </div>
         </div>
         <hr>
-        <?php if(empty($tasks)){ ?>
+        <?php if(empty($employees)){ ?>
             <div class="bg-light h-75 d-flex justify-content-center align-items-center">
-                <h2 class="text-center">No Launched Tasks</h2>
+                <h2 class="text-center">No employees</h2>
             </div>
         <?php
         } else {
-        foreach ($tasks as $task) {
+        foreach ($employees as $employee) {
         ?>
-            <a href="http://localhost/jpj-system/clicked-project?id=<?php echo $task->id; ?>">
+            <a href="http://localhost/jpj-system/clicked-project?id=<?php echo $employee->id; ?>">
                 <div class="Contents">
                     <div class="profile-pic">
                         <div class="avatar">
                             <img src="<?php echo $avatar ?>" alt="avatar">
                         </div>
-                        <p class="employee-name"><?php echo $task->employee_name; ?></p>
+                        <p class="employee-name"><?php echo $employee->display_name; ?></p>
                     </div>
                     <div class="project-info">
-                        <p class="project-title"><?php echo $task->project_title; ?></p>
-                        <p class="project-description"><?php echo $task->project_desc; ?></p>
-                    </div>
-                    <div class="Status">
-                        <div class="status-tracker">
-                            <div>
-                                <p>Due:</p>
-                            </div>
-                            <div>
-                                <p>Status:</p>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <p><?php echo $task->due_date; ?></p>
-                            </div>
-                            <div class="rocket">
-                                <p><?php echo $task->status; ?></p>
-                                <i class="bi bi-rocket-fill"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="buttons">
-                        <div class="edit">
-                            <button><i class="bi bi-pencil-square"></i>Edit</button>
-                        </div>
-                        <div class="delete">
-                            <button><i class="bi bi-trash3-fill"></i>Delete</button>
-                        </div>
-                    </div>
+                        <p class="project-description"><?php echo $employee->project_desc; ?></p>
+                    </div>                    
                 </div>
             <?php } ?>
             <?php } ?>
