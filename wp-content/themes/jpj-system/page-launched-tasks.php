@@ -6,19 +6,21 @@
 
 ?>
 <?php
-// if ( ! current_user_can( 'administrator' ) || ! is_admin() ) {
-//     wp_redirect('/jpj-system/user-dashboard');
-//     exit;
-// }
+if ( !current_user_can( 'manage_options' )) {
+    wp_redirect('/jpj-system/user-dashboard');
+    exit;
+}
 
 $avatar = get_template_directory_uri() . '/custom/memoji-modified.png';
 
 global $wpdb;
 $table = $wpdb->prefix . 'projects';
 
-$tasks = $wpdb->get_results("SELECT * FROM $table where status='Completed'");
+$tasks = $wpdb->get_results("SELECT * FROM $table where status='Launched'");
 ?>
 <?php get_header(); ?>
+
+
 
 
 <section class="Dashboard">

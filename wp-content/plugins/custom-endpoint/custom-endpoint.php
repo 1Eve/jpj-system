@@ -17,83 +17,36 @@
   if(!defined('ABSPATH')){
       die;
   }
+  require_once(plugin_dir_path(__FILE__) . 'project-routes.php');
+
+
+  global $namespace;
+$namespace = 'projects/v1';
 
   class PMS_projects_controller{
-    public $namespace;
-    public $route;
 
-    public function __construct(){
-        $this->namespace = 'projects/v1';
-        $this->route = 'projects';
+    public function activate(){
+        $this->create_project();
     }
 
-    //register the routes
-    public function register_routes(){
-        register_rest_route(
-            $this->namespace,
-            $this->route,
-            [
-                'callback'=>[$this, 'fetch_projects'],
-                'method'=>'GET',
-                'permission_callback'=> [$this, 'endpoint_authentication'],
-                'args'=>[
-                    'id'=>[
-                        'required'=>true,
-                        'validate_callback'=>function($param, $request, $key){
-                            return is_numeric($param);
-                        }
-                    ],
-                    'employee_name'=>[
-                        'required'=>true,
-                        'default'=>1,
-                        'validate_callback'=>function($param, $request, $key){
-                            return !is_numeric($param);
-                        }
-                    ]
-                    ],
-                    'schema'=>[$this, 'projects_schema']
-            ]
-        );
+    public function create_project(){
+        global $wpdb;
+        $table = $wpdb->prefix . 'projects';
+        $project_info = "CREATE TABLE IF NOT EXISTS " . $table . "(
+            id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            employee_name text NOT NULL,
+            project_title text NOT NULL,
+            project_desc text NOT NULL,
+            due_date text NOT NULL,
+            user_description text NOT NULL,
+            status text DEFAULT 'Unlaunched',
+            is_deleted int DEFAULT 0
+        );";
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        dbDelta($project_info);
     }
-
-    public function fetch_projects(WP_REST_Request $request){
-        $id = $request->get_param('id');
-        $employee_name = $request->get_param('employee_name');
-
-        $args = [
-            'post_type'=>'portfolio',
-            'status'=>'publish',
-            'posts_per_page'=>-10,
-            'meta_query'=>[[
-                'key'=>$id,
-                'value'=>$employee_name
-            ]]
-            ];
-
-            $the_query = new WP_Query($args);
-
-            $projects = $the_query->posts;
-            
-            if(empty($projects)){
-                return new WP_Error(
-                    'no_data_found',
-                    'No Data Found',
-                    [
-                        'status'=>404
-                    ]
-                    );
-            }
-            foreach($projects as $project){
-                $res = $this->custom_prepare_post($project, $request);
-                $info[] = $this->prepare_for_collection($res);
-            }
-
-            return $info;
-    }
-
-
-
-    function endpoint_authentication(){
+    
+      function endpoint_authentication(){
         if(is_user_logged_in()){
             return true;
         } else {
@@ -102,78 +55,15 @@
        
     }
 
-    function projects_schema(){
-        $schema = [
-            'type'=>'object',
-            'properties'=>[
-                'id'=> [
-                    'description' => esc_html__('This is the id of the task', 'my-textdomain'),
-                    'type' => 'integer'
-                ],
-                'employee_name' => [
-                    'description'=> esc_html__('This is the person being assigned the task', 'my-textdomain'),
-                    'type'=>'string'
-                ],
-                'project_title' => [
-                    'description'=> esc_html__('This is the title of the task', 'my-textdomain'),
-                    'type'=>'string'
-                ],
-                'project_desc' => [
-                    'description'=> esc_html__('This is the description of the task', 'my-textdomain'),
-                    'type'=>'string'
-                ],
-                'due_date' => [
-                    'description'=> esc_html__('This is the deadline of the task', 'my-textdomain'),
-                    'type'=>'date'
-                ]
-            ]
-        ];
-
-        return $schema;
-    }
-
-    function custom_prepare_post($post, $request){
-        $project_info = [];
-        $schema = $this->projects_schema();
-
-        if(isset($schema['properties']['id'])){
-            $project_info['id'] = (int) $post->id;
-        }
-        if(isset($schema['properties']['empolyee_name'])){
-            $project_info['empolyee_name'] = (int) $post->empolyee_name;
-        }
-        if(isset($schema['properties']['project_title'])){
-            $project_info['project_title'] = apply_filters('the_title', $post->project_title, $post);
-        }
-        if(isset($schema['properties']['project_desc'])){
-            $project_info['project_desc'] = apply_filters('the_content', $post->project_desc, $post);
-        }
-        if(isset($schema['properties']['due_date'])){
-            $project_info['due_date'] = apply_filters('the_content', $post->due_date, $post);
-        }
-
-        return rest_ensure_response($project_info);
-    }
-
-    function prepare_for_collection($response){
-        if(!($response instanceof WP_REST_Response)){
-            return $response;
-        }
-
-        $info = (array) $response->get_data();
-        $links = rest_get_server()::get_compact_response_links($response);
-
-        if(!(empty($links))){
-            $info['_links'] = $links;
-        }
-
-        return $info;
-    }
   }
+  
+  $controller = new PMS_projects_controller();
+  register_activation_hook(__FILE__, array($controller, 'activate'));
 
-  function initialise_controller_class(){
-    $controller = new PMS_projects_controller();
-    $controller->register_routes();
+  add_action('rest_api_init', 'pms_routes');
+  function pms_routes(){
+    
+
+    $project_routes = new ProjectRoute();
+    $project_routes->register_routes();
   }
-
-  add_action('rest_api_init', 'initialise_controller_class');
