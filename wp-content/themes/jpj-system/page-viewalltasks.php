@@ -6,6 +6,12 @@
 
 ?>
 <?php
+// if (!current_user_can( 'administrator' ) || ! is_admin() ) {
+//     wp_redirect('/jpj-system/user-dashboard');
+//     exit;
+// }
+
+
 $avatar = get_template_directory_uri() . '/custom/memoji-modified.png';
 
 global $wpdb;
@@ -20,27 +26,27 @@ $tasks = $wpdb->get_results("SELECT * FROM $table");
     <div class="sidebar">
         <div>
             <i class="bi bi-microsoft"></i>
-            <a href="">Dashboard</a>
+            <a href="/jpj-system/">Dashboard</a>
         </div>
         <div>
             <i class="bi bi-plus-square-fill"></i>
-            <a href="">Add New Task</a>
+            <a href="/jpj-system/create-project">Add New Task</a>
         </div>
         <div>
             <i class="bi bi-binoculars-fill"></i>
-            <a href="">View All Tasks</a>
+            <a href="/jpj-system/view-all-tasks">View All Tasks</a>
         </div>
         <div>
             <i class="bi bi-check2-circle"></i>
-            <a href="">Completed Tasks</a>
+            <a href="/jpj-system/completed-tasks">Completed Tasks</a>
         </div>
         <div>
             <i class="bi bi-trash3-fill"></i>
-            <a href="">Trash</a>
+            <a href="/jpj-system/trash">Trash</a>
         </div>
         <div>
             <i class="bi bi-people-fill"></i>
-            <a href="">All Employees</a>
+            <a href="/jpj-system/employees">All Employees</a>
         </div>
     </div>
 
