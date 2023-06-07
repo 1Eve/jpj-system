@@ -98,7 +98,7 @@ if (isset($_POST['delete'])) {
                 <h2 class="text-center">No Trash</h2>
             </div>
             <?php
-        } else {
+            } else {
             foreach ($tasks as $task) {
             ?>
                 <a href="http://localhost/jpj-system/clicked-project?id=<?php echo $task->id; ?>">

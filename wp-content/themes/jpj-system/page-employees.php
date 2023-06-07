@@ -113,10 +113,7 @@ if(isset($_POST['search'])){
                                 <img src="<?php echo $avatar ?>" alt="avatar">
                             </div>
                             <p class="employee-name"><?php echo $employee->display_name; ?></p>
-                        </div>
-                        <div class="employee-description">
-                            <p class="project-desc"> lorem shahshjs sjsnsnjnsjsns sjsbjbssbjbs sbnsnbjsjnsnjs sjnsjsns snjsnjns sjnjs jsnjsjs jnsjns<?php //echo $employee->project_desc; ?></p>
-                        </div>                    
+                        </div>                  
                     </div>
                
             <?php } ?>
