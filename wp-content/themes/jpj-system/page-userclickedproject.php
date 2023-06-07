@@ -8,6 +8,17 @@
 <?php
 $avatar = get_template_directory_uri() . '/custom/memoji-modified.png';
 
+if (is_user_logged_in()) {
+    global $wpdb;
+    $table = $wpdb->prefix . 'projects';
+    $id = get_current_user_id();
+    $user_login = wp_get_current_user()->user_login;
+
+    // Modify the query to fetch projects for the logged-in user
+    $task = $wpdb->get_row("SELECT * FROM $table WHERE employee_name = '$user_login' AND status='Completed'");
+
+}
+
 ?>
 <section class="Widely-View-Projects">
     <div>
@@ -18,14 +29,11 @@ $avatar = get_template_directory_uri() . '/custom/memoji-modified.png';
             <div class="avatar">
                 <img src="<?php echo $avatar ?>" alt="avatar">
             </div>
-            <p class="employee-name">Employee Name</p>
+            <p class="employee-name"><?php echo $task->employee_name; ?></p>
         </div>
         <div class="project-info">
-            <p class="project-title">Sample Title</p>
-            <p class="full-project-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris</p>
+            <p class="project-title"><?php echo $task->project_title; ?></p>
+            <p class="full-project-description"><?php echo $task->project_desc; ?></p>
         </div>
         <div class="Status">
             <div class="status-tracker">
@@ -38,10 +46,10 @@ $avatar = get_template_directory_uri() . '/custom/memoji-modified.png';
             </div>
             <div>
                 <div>
-                    <p>April 15, 2023 </p>
+                    <p><?php echo $task->due_date; ?></p>
                 </div>
                 <div class="rocket">
-                    <p>Launched</p>
+                    <p><?php echo $task->status; ?></p>
                     <i class="bi bi-rocket-fill"></i>
                 </div>
             </div>

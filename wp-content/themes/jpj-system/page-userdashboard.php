@@ -36,6 +36,9 @@ if (is_user_logged_in()) {
             $error = "Error updating ticket";
         }
     }
+
+    
+        
 ?>
     <?php get_header(); ?>
 
@@ -72,6 +75,14 @@ if (is_user_logged_in()) {
                 </div>
             </div>
             <hr>
+            <?php //if($task->status == 'Unlaunched' || $task->status == 'Launched'){ 
+                //if (empty($tasks)) { ?>
+                    <!-- <div class="bg-light h-75 d-flex justify-content-center align-items-center">
+                        <h2 class="text-center">No Task</h2>
+                    </div> -->
+                    <?php
+                // } else {
+                    ?>
             <a href="http://localhost/jpj-system/user-clicked-project/">
                 <div class="user-contents">
                     <div class="profile-pic">
@@ -136,3 +147,5 @@ if (is_user_logged_in()) {
         </div>
     
 <?php } ?>
+<?php //} ?>
+<?php //} ?>

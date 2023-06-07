@@ -45,7 +45,7 @@ add_theme_support('post-thumbnails');
 add_shortcode('login', function(){
     // echo 'FORMMMMMMMMMMMMMMMMMMMMMMMMMMMM';
 
-    $login_img = get_template_directory_uri() . "/assets/login.jpg";
+
     $error = '';
 
     if (isset($_POST['loginbtn'])) {
@@ -71,75 +71,102 @@ add_shortcode('login', function(){
         $error = "Invalid email or password";
     }
 
-    $logincode = '';
-    $logincode .= '<div class="loginpage bg-light" style="height: 77vh;">';
-    $logincode .='<div class="form bg-white d-flex flex-row w-75 m-auto mt-5 rounded-1" style="border-radius: 20px;">';
-    $logincode .= '<div class="d-flex flex-column justify-content-center align-items-center p-4 w-50">';
-    $logincode .= '<form action="" method="post">';
-    $logincode .= '<h2 style="text-center;">Login to Your Account</h2>';
-    $logincode .= '<div class="d-flex flex-column justify-content-center align-items-center gap-3">';
-    $logincode .='<div class="d-flex flex-column justify-content-start; align-item-start gap-2">';
-    $logincode .= '<label>Email: </label>';
-    $logincode .='<div class="login-input" >';
-    $logincode .= '<input type="email" class="form-control" name="user_email" placeholder="abc@example.com" style="width: 100%; height: 45px; border: 1px solid grey; border-radius: 10px;">';
-    $logincode .='</div>';
-    $logincode .='</div>';
-    $logincode .='<div style="display:flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px">';
-    $logincode .= '<label>Password: </label>';
-    $logincode .='<div class="login-input" >';
-    $logincode .= '<input type="password" class="form-control" name="user_pass" placeholder="Enter your password" style="width: 100%; height: 45px; border: 1px solid grey; border-radius: 10px;">';
-    $logincode .='</div>';
-    $logincode .='</div>';
-    $logincode .= '</div>';
-    $logincode .= '<div>';
-    $logincode .= '<input type="submit" name="loginbtn" value="Login" style="width: 100%; height: 45px; border: hidden; border-radius: 10px; color: white; cursor: hover; background-color: #6E3EF3; margin-top: 30px;">';
-    $logincode .= '</div>';
-    $logincode .= '</form></div>';
-    $logincode .='<div class="login-image w-50" style="background-color: #6E3EF3; position: relative">';
-    $logincode .= '<img src='. $login_img.' alt="logo" class="image" style="position: absolute;"/>';
-    $logincode .='</div>';
-    $logincode .='</div>';
-    $logincode .='</div>';
+//     $logincode = '';
+//     $logincode .= '<div class="loginpage bg-light" style="height: 77vh;">';
+//     $logincode .='<div class="form bg-white d-flex flex-row w-75 m-auto mt-5 rounded-1" style="border-radius: 20px;">';
+//     $logincode .= '<div class="d-flex flex-column justify-content-center align-items-center p-4 w-50">';
+//     $logincode .= '<form action="" method="post">';
+//     $logincode .= '<h2 style="text-center;">Login to Your Account</h2>';
+//     $logincode .= '<div class="d-flex flex-column justify-content-center align-items-center gap-3">';
+//     $logincode .='<div class="d-flex flex-column justify-content-start; align-item-start gap-2">';
+//     $logincode .= '<label>Email: </label>';
+//     $logincode .='<div class="login-input" >';
+//     $logincode .= '<input type="email" class="form-control" name="user_email" placeholder="abc@example.com" style="width: 100%; height: 45px; border: 1px solid grey; border-radius: 10px;">';
+//     $logincode .='</div>';
+//     $logincode .='</div>';
+//     $logincode .='<div style="display:flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px">';
+//     $logincode .= '<label>Password: </label>';
+//     $logincode .='<div class="login-input" >';
+//     $logincode .= '<input type="password" class="form-control" name="user_pass" placeholder="Enter your password" style="width: 100%; height: 45px; border: 1px solid grey; border-radius: 10px;">';
+//     $logincode .='</div>';
+//     $logincode .='</div>';
+//     $logincode .= '</div>';
+//     $logincode .= '<div>';
+//     $logincode .= '<input type="submit" name="loginbtn" value="Login" style="width: 100%; height: 45px; border: hidden; border-radius: 10px; color: white; cursor: hover; background-color: #6E3EF3; margin-top: 30px;">';
+//     $logincode .= '</div>';
+//     $logincode .= '</form></div>';
+//     $logincode .='<div class="login-image w-50" style="background-color: #6E3EF3; position: relative">';
+//     $logincode .= '<img src='. $login_img.' alt="logo" class="image" style="position: absolute;"/>';
+//     $logincode .='</div>';
+//     $logincode .='</div>';
+//     $logincode .='</div>';
 
-    $logincode .= '<style>
-    .form{
-        border-radius: 20px;
-    }
-    .login-image{
-        display:absolute;
-    }
-    .image{
-        display: relative;
-        width: 450px;
-        height: 300px;
-        top: 50px;
-    }
-    @media screen and (max-width: 767px) {
-        .loginpage{
-            background-color: white;
-        }
-        .form {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+//     $logincode .= '<style>
+//     .form{
+//         border-radius: 20px;
+//     }
+//     .login-image{
+//         display:absolute;
+//     }
+//     .image{
+//         display: relative;
+//         width: 450px;
+//         height: 300px;
+//         top: 50px;
+//     }
+//     @media screen and (max-width: 767px) {
+//         .loginpage{
+//             background-color: white;
+//         }
+//         .form {
+//             display: flex;
+//             flex-direction: column;
+//             justify-content: center;
+//             align-items: center;
+//         }
         
-        .login-image {
-            display: none;
-        }
-    }
-    @media screen and (max-width: 585px) {
-        .login-input input{
-            width: 60%;
-        }
-    }
-</style>';
+//         .login-image {
+//             display: none;
+//         }
+//     }
+//     @media screen and (max-width: 585px) {
+//         .login-input input{
+//             width: 60%;
+//         }
+//     }
+// </style>';
 
+//     return $logincode;
+    
+    
+    $loginphoto = get_template_directory_uri() . '/assets/login.png';
+    
+    
+    $logincode = '';
+    $logincode.='<section class="login-container">';
+    $logincode.='<div>';
+    $logincode.='<div class="login-form">';
+    $logincode.='<div class="login-details-container">';
+    $logincode.='<form action="" method="post">';
+    $logincode.='<label>Email</label>';
+    $logincode.='<input type="email" name="user_email" placeholder="abc@example.com">';
+    $logincode.='<label>Password</label>';
+    $logincode.='<input type="password" name="user_pass" placeholder="Enter your password">';
+    $logincode.='<input type="submit" name="loginbtn" value="Login"">';
+    $logincode.='</form>';
+    $logincode.='</div>';
+    $logincode.='<div class="login-picture-container">';
+    $logincode.='<div>';
+    $logincode.='<img src='.$loginphoto.' alt="avatar">';
+    $logincode.='</div>';
+    $logincode.='</div>';
+    $logincode.='</div>';
+    $logincode.='</div>';
+    $logincode.='</section>';
+    
     return $logincode;
 });
-
-//get user info
+    //get user info
 function get_login_info()
 {
     $current_employee = [];

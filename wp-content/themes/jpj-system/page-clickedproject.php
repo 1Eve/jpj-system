@@ -19,7 +19,7 @@ global $wpdb;
 
 $table = $wpdb->prefix . 'projects';
 $id = $_GET['id'];
-var_dump($id);
+// var_dump($id);
 
 
 $task = $wpdb->get_row("SELECT * FROM $table WHERE id = $id");
