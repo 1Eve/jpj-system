@@ -5,7 +5,7 @@
  */
 
  /**
-    * Plugin Name: Custom Endpoint for Fetching Projects
+    * Plugin Name: Custom Endpoint for Fetching Projectsa
     * Description: Plugin for fetching projects
     * Author: Joy Mwende, Patrick Mwaniki
     * Author URI: http://github.com/.......
