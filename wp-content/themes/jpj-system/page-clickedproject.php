@@ -74,6 +74,14 @@ if (isset($_POST['delete_btn'])) {
                 </div>
             </div>
         </div>
+        <?php 
+        if($task->status == 'Completed') {
+            echo '<div class="buttons">
+            <div class="delete">  
+                <button><i class="bi bi-trash3-fill"></i>Erase</button>
+            </div>';
+        } else {
+        ?>
         <div class="buttons">
             <div class="edit">
                 <a href="<?php echo site_url('jpj-system/update-project?id=').$id; ?>"><button><i class="bi bi-pencil-square"></i>Edit</button></a>
@@ -85,5 +93,6 @@ if (isset($_POST['delete_btn'])) {
                 </form>
             </div>
         </div>
+        <?php } ?>
     </div>
 </section>

@@ -1,8 +1,11 @@
 <?php
+
 /**
- * Template Name: User Dashboard
+ * Template Name: User completed Project
  */
+
 ?>
+
 <?php
 $avatar = get_template_directory_uri() . '/custom/memoji-modified.png';
 
@@ -12,49 +15,7 @@ if (is_user_logged_in()) {
     $id = get_current_user_id();
     $user_login = wp_get_current_user()->user_login;
 
-    $task = $wpdb->get_row("SELECT * FROM $table WHERE employee_name = '$user_login' AND status !='Completed'");
-
-
-
-    if (isset($_POST['launchbtn'])) {
-        $launch_id = $_POST['launch_id'];
-        $result = $wpdb->query("UPDATE $table SET status='Launched' WHERE id=$launch_id");
-        if ($result) {
-            echo "<script>
-                    var yes = confirm('Are you sure you want to activate this task?');
-                    if (yes) {
-                        alert('Task Activated');
-                    } else {
-                        alert('Task not activated');
-                    }
-                </script>";
-
-                $task = $wpdb->get_row("SELECT * FROM $table WHERE employee_name = '$user_login' AND status !='Completed'");
-        } else {
-            $error = "Error updating ticket";
-        }
-    }
-
-    if (isset($_POST['markcompletebtn'])) {
-        $markcomplete_id = $_POST['markcomplete_id'];
-        $result = $wpdb->query("UPDATE $table SET status='Completed' WHERE id=$markcomplete_id");
-        if ($result) {
-            echo "<script>
-                    var yes = confirm('Are you sure you want to mark this task as complete?');
-                    if (yes) {
-                        alert('Task marked as complete');
-                    } else {
-                        alert('Task not marked as complete');
-                    }
-                </script>";
-                $task = $wpdb->get_row("SELECT * FROM $table WHERE employee_name = '$user_login' AND status !='Completed'");
-        } else {
-            $error = "Error updating ticket";
-        }
-    }
-
-    
-        
+    $tasks = $wpdb->get_results("SELECT * FROM $table WHERE employee_name = '$user_login' AND status='Completed'");   
 ?>
     <?php get_header(); ?>
 
@@ -91,12 +52,13 @@ if (is_user_logged_in()) {
                 </div>
             </div>
             <hr>
-            <?php if (empty($task)) { ?>
+            <?php if (empty($tasks)) { ?>
             <div class="bg-light h-75 d-flex justify-content-center align-items-center">
-                <h2 class="text-center">No Active Task</h2>
+                <h2 class="text-center">No Completed Tasks</h2>
             </div>
             <?php
                 } else {
+                foreach ($tasks as $task){
             ?>
             <a href="http://localhost/jpj-system/user-clicked-project/">
                 <div class="user-contents">
@@ -163,4 +125,4 @@ if (is_user_logged_in()) {
         </div>
     
 <?php } ?>
-
+<?php } ?>
