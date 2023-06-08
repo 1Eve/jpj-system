@@ -19,7 +19,6 @@ global $wpdb;
 
 $table = $wpdb->prefix . 'projects';
 $id = $_GET['id'];
-var_dump($id);
 
 
 $task = $wpdb->get_row("SELECT * FROM $table WHERE id = $id");
@@ -41,6 +40,9 @@ if (isset($_POST['delete_btn'])) {
 
 
 <section class="Widely-View-Projects">
+    <div class="back">
+        <a href="http://localhost/jpj-system/admin/"><i class="bi bi-arrow-left"></i> Back</a>
+    </div>
     <div>
         <?php get_header(); ?>
     </div>

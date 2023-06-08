@@ -58,7 +58,7 @@ add_shortcode('login', function(){
             'user_password' => $user_pass
         ]);
     
-        // var_dump($user);
+        
         if (!is_wp_error($user)) {
             wp_set_current_user($user->ID);
             wp_set_auth_cookie($user->ID);
