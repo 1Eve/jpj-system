@@ -221,6 +221,9 @@ get_header();
                         <input class="round rounded-1" style="width: 300px; height: 36px;" type="date" min="" name="due_date">
                     </div>
                 </div>
+                <div class="home">
+                        <a href="http://localhost/jpj-system/admin/"><i class="bi bi-arrow-left"></i> Home</a>
+                    </div>
                 <div class="mt-2">
                     <button class="create-btn" style="width: 250px" type="submit" name="createbtn">Create Project</button>
                 </div>

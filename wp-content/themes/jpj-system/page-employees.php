@@ -72,6 +72,13 @@ if(isset($_POST['search'])){
                         <i class=" bi bi-chevron-right"></i>
                     </div>
                 </div>
+                <div>
+                    <span><i class="bi bi-arrow-up-right"></i></span>
+                    <a href="/jpj-system/pms.php">My Wordpress</a>
+                    <div class="aarrow">
+                        <i class=" bi bi-chevron-right"></i>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

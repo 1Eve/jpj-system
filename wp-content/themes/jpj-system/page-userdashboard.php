@@ -143,14 +143,14 @@ if (is_user_logged_in()) {
                             ?>
                                 <form action="" method="POST">
                                     <input type="hidden" name="markcomplete_id" value="<?php echo $task->id; ?>">
-                                    <button type="submit" name="markcompletebtn"><i class="bi bi-pencil-square"></i>Mark as Complete</button>
+                                    <button type="submit" name="markcompletebtn"><i class="bi bi-pencil-square"></i>Completed</button>
                                 </form>
                             <?php
                             } else if ($task->status == 'Completed') {
                             ?>
                                 <form action="" method="POST">
                                     <input type="hidden" name="completed_id" value="<?php echo $task->id; ?>">
-                                    <button type="submit" name="completedbtn"><i class="bi bi-check-circle-fill"></i>Completed</button>
+                                    <button type="submit" name="completedbtn"><i class="completedbtn bi bi-check-circle-fill"></i>Erase</button>
                                 </form>
                             <?php
                             }

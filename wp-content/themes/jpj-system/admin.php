@@ -63,6 +63,13 @@ $tasks = $wpdb->get_results("SELECT * FROM $table");
                         <i class=" bi bi-chevron-right"></i>
                     </div>
                 </div>
+                <div>
+                    <span><i class="bi bi-arrow-up-right"></i></span>
+                    <a href="/jpj-system/pms.php">My Wordpress</a>
+                    <div class="aarrow">
+                        <i class=" bi bi-chevron-right"></i>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -128,14 +135,6 @@ $tasks = $wpdb->get_results("SELECT * FROM $table");
                                     </p>
                                     <i class="bi bi-rocket-fill"></i>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="buttons">
-                            <div class="edit">
-                                <button><i class="bi bi-pencil-square"></i>Edit</button>
-                            </div>
-                            <div class="delete">
-                                <button><i class="bi bi-trash3-fill"></i>Delete</button>
                             </div>
                         </div>
                     </div>
