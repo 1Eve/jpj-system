@@ -49,7 +49,7 @@ if (isset($_POST['createbtn'])) {
 
     //check if user has been assigned a task
     $is_assigned = $wpdb->get_row("SELECT * FROM $table WHERE employee_name = '" . $_POST['employee_name'] . "'");
-    if ($is_assigned) {
+    if ($is_assigned && $is_assigned->status != 'Completed') {
         echo "<script>alert('Employee has been assigned another task')</script>";
     } else {
         $newtask = $wpdb->insert($table, $project);
@@ -173,18 +173,25 @@ get_header();
                         <?php
                         function get_employees()
                         {
+                            global $wpdb;
+
+                            $table_project = $wpdb->prefix . 'projects';
+                            $table_user = $wpdb->prefix . 'users';
+
                             // fetch employees
-                            $users = get_users();
+                            $users = $wpdb->get_results("SELECT *
+                            FROM $table_user
+                            WHERE user_login COLLATE utf8mb4_unicode_ci NOT IN (SELECT employee_name COLLATE utf8mb4_unicode_ci FROM $table_project WHERE status = 'Completed')
+                            ");
 
                             $employee = '<select name="employee_name" class="update-input" style="width: 300px; height: 36px;">';
                             $employee .= '<option value="Select employee">Select employee</option>';
 
-                            // Loop through the users and add options to the dropdown
+                            //loop over users
                             foreach ($users as $user) {
-                                $display_name = $user->display_name;
 
                                 // Add an option for each employee
-                                $employee .= '<option value="' . $display_name . '">' . $display_name . '</option>';
+                                $employee .= '<option value="' . $user->user_login . '">' . $user->user_login . '</option>';
                             }
 
                             $employee .= '</select>';
@@ -211,7 +218,7 @@ get_header();
                 <div class="d-flex flex-column justify-content-start align-items-start gap-2">
                     <label for="due_date">Due date</label>
                     <div class="update-input">
-                        <input class="round rounded-1" style="width: 300px; height: 36px;" type="date" name="due_date">
+                        <input class="round rounded-1" style="width: 300px; height: 36px;" type="date" min="" name="due_date">
                     </div>
                 </div>
                 <div class="home">

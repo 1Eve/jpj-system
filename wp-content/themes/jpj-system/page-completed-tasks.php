@@ -40,6 +40,7 @@ $tasks = $wpdb->get_results("SELECT * FROM $table where status='Completed'");
                     </div>
                 </div>
                 <div>
+                    
                     <span><i class="bi bi-binoculars-fill"></i></span>
                     <a href="/jpj-system/view-all-tasks">View All Tasks</a>
                     <div class="aarrow">

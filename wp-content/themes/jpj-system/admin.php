@@ -6,6 +6,7 @@
 
 ?>
 <?php
+
 $avatar = get_template_directory_uri() . '/custom/memoji-modified.png';
 
 global $wpdb;
